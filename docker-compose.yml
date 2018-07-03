@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  app_consumer:
+    build:
+      context: .
+      dockerfile: ./compose/app_consumer/Dockerfile
+    volumes:
+      - "./:/app"
+    env_file:
+      - .env
