@@ -1,6 +1,5 @@
 from celery import Celery
 from config.log import logger
-import celery_pubsub
 import celery as app
 
 
@@ -24,11 +23,6 @@ def add(*args, **kwargs):
 )
 def main_publisher_distributed():
     for x in range(0, 100000):
-        # res = celery_pubsub.publish('some.topic', x)
         res = add.delay(x)
         logger.info("[publisher 2] {}".format(x))
-        # not working
-        # res = celery_pubsub.publish('some.topic', x)
-        # logger.info("[publisher] {}".format(res))
 
-# celery_pubsub.subscribe('some.topic', add)
